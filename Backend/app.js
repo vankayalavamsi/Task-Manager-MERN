@@ -15,7 +15,7 @@ const app = express();
 // CORS — must be before routes. credentials:true is REQUIRED for cookies
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:5173"], // CRA or Vite
+    origin: ["http://localhost:3000", "https://task-manager-mern23.netlify.app/"], // CRA or Vite
     credentials: true,
   })
 );
