@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base ---------- */
+body {
+  @apply bg-slate-950 text-slate-200 antialiased;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  background-image:
+    radial-gradient(60rem 60rem at 120% -10%, rgba(99, 102, 241, 0.14), transparent 60%),
+    radial-gradient(50rem 50rem at -20% 110%, rgba(139, 92, 246, 0.12), transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+::selection {
+  @apply bg-indigo-500/40 text-white;
+}
+
+/* Dark native controls (date picker, select dropdown) */
+input, select, textarea { color-scheme: dark; }
+
+/* Fix ugly white autofill on dark inputs */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.06) inset;
+  -webkit-text-fill-color: #e2e8f0;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #020617; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ---------- Reusable pieces ---------- */
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/40;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+  .input-dark {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5
+      text-slate-100 placeholder-slate-500 outline-none transition duration-200
+      focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/30 focus:bg-white/10;
+  }
+  .btn-primary {
+    @apply py-2.5 px-6 rounded-xl font-semibold text-white
+      bg-gradient-to-r from-indigo-500 to-violet-500
+      shadow-lg shadow-indigo-500/25 transition-all duration-200
+      hover:shadow-indigo-500/50 hover:brightness-110 hover:-translate-y-0.5
+      active:translate-y-0 active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply py-2.5 px-6 rounded-xl font-semibold text-slate-200
+      border border-white/15 bg-white/5 transition-all duration-200
+      hover:bg-white/10 hover:border-white/25 hover:-translate-y-0.5
+      active:translate-y-0;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border;
+  }
+  .alert-error {
+    @apply bg-rose-500/10 border border-rose-400/30 text-rose-300 text-sm rounded-xl px-4 py-3;
+  }
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.5s ease-out both; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
